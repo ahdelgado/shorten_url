@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <left><%= link_to url.long_url, url %></left>
+  </td>
+  <td>
+    <left><%= link_to url.short_url, url %></left>
+  </td>
+  <td>
+    | <%= link_to "delete", url, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  </td>
+</tr>
