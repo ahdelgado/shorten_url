@@ -12,18 +12,19 @@ class Url < ActiveRecord::Base
   # Hash long URL into short URL
   def self.generate(long_url)
     url = Url.where(long_url: long_url).create
-    
-    # Make sure 0 and O are treated identically
-    
-
-    url.short_url = 'http://' << Base64.urlsafe_encode64(long_url)[8..15]
+    url.short_url = self.shorten_url
     url
   end
-  
-  #Remove inappropriate words (foo and bar) from short URL
+
   def self.clean(short_url)
-      short_url = short_url.split("").shuffle.join
+      short_url = 'http://' << short_url.split("").shuffle.join
       short_url
+  end
+
+  # shorten long URL
+  def self.shorten_url(size = 7)
+    charset = ('a'..'z').to_a + (0..9).to_a
+    (0...size).map{ charset.to_a[rand(charset.size)] }.join
   end
             
 end

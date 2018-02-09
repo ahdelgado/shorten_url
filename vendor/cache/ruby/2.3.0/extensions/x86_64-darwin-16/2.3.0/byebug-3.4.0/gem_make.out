@@ -1,0 +1,19 @@
+current directory: /Users/Alcides/Desktop/short_url_app/vendor/cache/ruby/2.3.0/gems/byebug-3.4.0/ext/byebug
+/Users/Alcides/.rvm/rubies/ruby-2.3.3/bin/ruby -r ./siteconf20180209-22219-1cvz12q.rb extconf.rb
+creating Makefile
+
+current directory: /Users/Alcides/Desktop/short_url_app/vendor/cache/ruby/2.3.0/gems/byebug-3.4.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/Alcides/Desktop/short_url_app/vendor/cache/ruby/2.3.0/gems/byebug-3.4.0/ext/byebug
+make "DESTDIR="
+compiling locker.c
+compiling byebug.c
+compiling context.c
+compiling breakpoint.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/Alcides/Desktop/short_url_app/vendor/cache/ruby/2.3.0/gems/byebug-3.4.0/ext/byebug
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20180209-22219-vba4jj/byebug

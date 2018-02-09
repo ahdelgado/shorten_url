@@ -18,7 +18,6 @@ class UrlsController < ApplicationController
       flash[:success] = 'Short URL generated!'
       redirect_to @url
     else
-      flash.now[:danger] = 'An error ocurred. Could not save short URL.'
       render 'new'
     end
   end

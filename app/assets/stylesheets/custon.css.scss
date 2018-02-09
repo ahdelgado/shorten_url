@@ -5,6 +5,8 @@
 
 $gray-medium-light: #eaeaea;
 $steel-blue:        #4682B4;
+$scarlet:           #ff2400;
+$limegreen:         #32CD32;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -72,7 +74,7 @@ p {
   letter-spacing: -1px;
   padding-top: 30px;
   &:hover {
-    color: white;
+    color: $scarlet;
     text-decoration: none;
   }
 }
@@ -84,7 +86,7 @@ p {
   color: $steel-blue;
   letter-spacing: -1px;
   &:hover {
-    color: white;
+    color: $limegreen;
     text-decoration: none;
   }
 }
