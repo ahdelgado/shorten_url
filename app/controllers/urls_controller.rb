@@ -9,15 +9,13 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find(params[:id])
-    redirect_to @url.long_url
+    redirect_to @url.clean_url
   end
   
   def create
     @url = Url.new(url_params)
-    @url.long_url = url_params[:long_url]
-    @url.short_url = @url.shorten_url(url_params[:long_url])
     if @url.save
-      flash[:success] = 'Short URL generated!'
+    flash[:success] = 'Short URL generated!'
       redirect_to urls_path
     else
       render 'new'
@@ -26,7 +24,7 @@ class UrlsController < ApplicationController
       
   def destroy
     Url.find(params[:id]).destroy
-    flash[:success] = "URL deleted"
+    flash[:success] = 'URL deleted'
     redirect_to index_path
   end
   
