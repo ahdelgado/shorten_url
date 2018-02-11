@@ -7,15 +7,14 @@ class Url < ActiveRecord::Base
 
   VALID_CHARS = ('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a
                       
-  validates :long_url,  presence: true, uniqueness: true,
+  validates :url,  presence: true, uniqueness: true,
                     format: { with: VALID_URL_REGEX }
 
   before_create :shorten_url
 
   # Hash long URL into short URL
   def shorten_url
-    self.clean
-    if !Url.where(clean_url: self.clean_url).exists?
+    if !Url.where(url: self.url).exists?
       self.short_url = Digest::MD5.hexdigest(long_url)
     end
   end
@@ -25,8 +24,8 @@ class Url < ActiveRecord::Base
   end
 
   def clean
-    self.clean_url = self.long_url.strip.downcase.gsub(/(https?:\/\/)|(www\.)/, '')
-    self.clean_url = "http://#{self.clean_url}"
+    self.url = self.long_url.strip.downcase.gsub(/(https?:\/\/)|(www\.)/, '')
+    self.url = "http://#{self.url}"
   end
             
 end

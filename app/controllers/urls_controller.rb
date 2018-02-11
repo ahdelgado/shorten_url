@@ -9,11 +9,12 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find(params[:id])
-    redirect_to @url.clean_url
+    redirect_to @url.url
   end
   
   def create
     @url = Url.new(url_params)
+    @url.clean
     if @url.save
     flash[:success] = 'Short URL generated!'
       redirect_to urls_path

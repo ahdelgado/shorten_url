@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211025026) do
+ActiveRecord::Schema.define(version: 20180211042541) do
 
   create_table "urls", force: :cascade do |t|
     t.string   "long_url"
     t.string   "short_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "clean_url"
+    t.string   "url"
   end
 
   add_index "urls", ["long_url"], name: "index_urls_on_long_url", unique: true
