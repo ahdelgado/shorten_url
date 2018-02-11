@@ -3,7 +3,7 @@
     <left><%= link_to url.long_url, url %></left>
   </td>
   <td>
-    <left><%= link_to url.short_url, url %></left>
+    <left><%= link_to url.base_url + url.short_url[0..6], url %></left>
   </td>
   <td>
     | <%= link_to "delete", url, method: :delete,

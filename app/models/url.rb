@@ -1,30 +1,30 @@
-require "base64"
+require 'digest'
 
 class Url < ActiveRecord::Base
     
   VALID_URL_REGEX = /\A((http|https):\/\/)?[a-z0-9]+([\-\.]
                       {1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
+
+  VALID_CHARS = ('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a
                       
   validates :long_url,  presence: true, uniqueness: true,
                     format: { with: VALID_URL_REGEX }
                                           
-  
+
+  def clean(long_url)
+    # code here
+  end
+
   # Hash long URL into short URL
-  def self.generate(long_url)
-    url = Url.where(long_url: long_url).create
-    url.short_url = self.shorten_url
-    url
+  def shorten_url(long_url)
+    if !Url.where(long_url: clean(long_url)).exists?
+      short_url = Digest::MD5.hexdigest(long_url)
+    end
+    short_url
   end
 
-  def self.clean(short_url)
-      short_url = 'http://' << short_url.split("").shuffle.join
-      short_url
-  end
-
-  # shorten long URL
-  def self.shorten_url(size = 7)
-    charset = ('a'..'z').to_a + (0..9).to_a
-    (0...size).map{ charset.to_a[rand(charset.size)] }.join
+  def base_url
+    'http://willing/'
   end
             
 end

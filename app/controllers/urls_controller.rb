@@ -13,10 +13,12 @@ class UrlsController < ApplicationController
   end
   
   def create
-    @url = Url.generate(url_params[:long_url])
+    @url = Url.new(url_params)
+    @url.long_url = url_params[:long_url]
+    @url.short_url = @url.shorten_url(url_params[:long_url])
     if @url.save
       flash[:success] = 'Short URL generated!'
-      redirect_to @url
+      redirect_to urls_path
     else
       render 'new'
     end
