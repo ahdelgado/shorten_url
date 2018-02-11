@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 /* mixins, variables, etc. */
 
@@ -190,5 +191,38 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+a.new {
+  @extend .btn;
+  @extend .btn-success;
+
+  &:before {
+    font-family: "FontAwesome";
+    @extend .fa-plus;
+    padding-right: 0.5em;
+  }
+}
+
+a.edit {
+  @extend .btn;
+  @extend .btn-primary;
+
+  &:before {
+    font-family: "FontAwesome";
+    @extend .fa-pencil;
+    padding-right: 0.5em;
+  }
+}
+
+a.delete {
+  @extend .btn;
+  @extend .btn-danger;
+
+  &:before {
+    font-family: "FontAwesome";
+    @extend .fa-trash;
+    padding-right: 0.5em;
   }
 }

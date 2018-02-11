@@ -6,11 +6,14 @@
 <%= will_paginate %>
 
 <ul class="urls">
-  <table style="width:50%">
-    <tr>
-      <td><h2>Long URL</h2></td>
-      <td><h2>Generated Short URL<h2></td> 
-    </tr>
+  <table class='table table-hover table-bordered'>
+    <thead class="thead-inverse">
+      <tr>
+        <th><center>Original URL</center></th>
+        <th><center>Short URL</center></th>
+        <th><center>Actions</center></th>
+      </tr>
+    </thead>
   <%= render @urls %>
   </table>
 </ul>

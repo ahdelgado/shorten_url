@@ -1,15 +1,14 @@
 <% provide(:title, 'New URL') %>
 <h1>Create New URL</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
     <%= form_for(@url) do |f| %>
       <%= render 'shared/error_messages' %>
-    
-      <%= f.label :long_url, "Long URL" %>
-      <%= f.text_field :long_url, class: 'form-control' %>
+
+      <%= f.text_field :long_url, class: 'form-control', placeholder: 'Please enter your URL here' %>
       
-      <%= f.submit "Generate a Short URL", class: "btn btn-primary" %>
+      <%= f.submit 'Generate a Short URL', class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
