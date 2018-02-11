@@ -6,18 +6,18 @@
 
   <%= will_paginate %>
 
-  <ul class="urls">
-    <table class='table table-hover table-bordered'>
-      <thead class="thead-inverse">
+  <div class="table-responsive urls">
+    <table class="table table-hover table-bordered">
+      <thead>
         <tr>
-          <th><center><p class='text-primary'>Original URL</p></center></th>
-          <th><center><p class='text-primary'>Short URL</p></center></th>
-          <th><center><p class='text-primary'>Actions</p></center></th>
+          <th class="col-xs-4 text-primary"><center><p>Original URL</p></center></th>
+          <th class="col-xs-4 text-primary"><center><p>Short URL</p></center></th>
+          <th class="col-xs-4 text-primary"><center><p>Actions</p></center></th>
         </tr>
       </thead>
     <%= render @urls %>
     </table>
-  </ul>
+  </div>
 
   <%= will_paginate %>
 </div>
