@@ -1,21 +1,23 @@
-<% provide(:title, 'All URLs') %>
-<div class="margin-top">
-  <h1>List of URLs</h1>
+<div id="particles-js">
+  <% provide(:title, 'All URLs') %>
+  <div class="margin-top">
+    <h1 class='text-primary'>List of URLs</h1>
+  </div>
+
+  <%= will_paginate %>
+
+  <ul class="urls">
+    <table class='table table-hover table-bordered'>
+      <thead class="thead-inverse">
+        <tr>
+          <th><center><p class='text-primary'>Original URL</p></center></th>
+          <th><center><p class='text-primary'>Short URL</p></center></th>
+          <th><center><p class='text-primary'>Actions</p></center></th>
+        </tr>
+      </thead>
+    <%= render @urls %>
+    </table>
+  </ul>
+
+  <%= will_paginate %>
 </div>
-
-<%= will_paginate %>
-
-<ul class="urls">
-  <table class='table table-hover table-bordered'>
-    <thead class="thead-inverse">
-      <tr>
-        <th><center>Original URL</center></th>
-        <th><center>Short URL</center></th>
-        <th><center>Actions</center></th>
-      </tr>
-    </thead>
-  <%= render @urls %>
-  </table>
-</ul>
-
-<%= will_paginate %>

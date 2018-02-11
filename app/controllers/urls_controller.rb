@@ -22,6 +22,13 @@ class UrlsController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+    @url = Url.new(url_params)
+  end
+
+  def update
+  end
       
   def destroy
     Url.find(params[:id]).destroy
