@@ -7,7 +7,7 @@
         </ul>
       </nav>
     <% end %>
-    <% if current_page?(index_path) %>
+    <% if current_page?(urls_path) || current_page?(index_path) %>
       <nav>
         <ul>
           <li><%= link_to "Create New Short URL", root_path, id: "logo-right" %></li>

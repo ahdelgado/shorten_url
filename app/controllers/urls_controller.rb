@@ -1,4 +1,6 @@
 class UrlsController < ApplicationController
+  before_action :get_url,         only: [:show, :destroy, :edit]
+
   def index
     @urls = Url.paginate(page: params[:page])
   end
@@ -8,7 +10,6 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @url = Url.find(params[:id])
     redirect_to @url.url
   end
   
@@ -24,14 +25,13 @@ class UrlsController < ApplicationController
   end
 
   def edit
-    @url = Url.new(url_params)
   end
 
   def update
   end
       
   def destroy
-    Url.find(params[:id]).destroy
+    @url.destroy
     flash[:success] = 'URL deleted'
     redirect_to index_path
   end
@@ -40,6 +40,10 @@ class UrlsController < ApplicationController
 
     def url_params
       params.require(:url).permit(:long_url)
+    end
+
+    def get_url
+      @url = Url.find(params[:id])
     end
 
 end
