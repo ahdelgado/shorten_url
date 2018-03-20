@@ -17,7 +17,7 @@ class UrlsController < ApplicationController
     @url = Url.new(url_params)
     @url.clean
     if @url.save
-    flash[:success] = 'Short URL generated!'
+      flash[:success] = 'Short URL generated!'
       redirect_to urls_path
     else
       render 'new'

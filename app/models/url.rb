@@ -20,7 +20,7 @@ class Url < ActiveRecord::Base
   end
 
   def base_url
-    'http://willing/'
+    'http://ajruiz/'
   end
 
   def clean
