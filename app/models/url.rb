@@ -11,12 +11,11 @@ class Url < ActiveRecord::Base
                     format: { with: VALID_URL_REGEX }
 
   before_create :shorten_url
+  before_save   :shorten_url
 
   # Hash long URL into short URL
   def shorten_url
-    if !Url.where(url: self.url).exists?
-      self.short_url = Digest::MD5.hexdigest(long_url)
-    end
+    self.short_url = Digest::MD5.hexdigest(long_url)
   end
 
   def base_url
