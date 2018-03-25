@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   
   root 'urls#new'
   resources  :urls, except: :show
-  get 'urls/:short_url', to: 'urls#show'   # allows short_url to be passed as a param
+  get 'urls/:short_url', to: 'urls#show', as: :short_url
+  get '/:short_url', to: 'urls#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
