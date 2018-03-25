@@ -4,7 +4,9 @@
       <center><%= link_to url.long_url, url %></center>
     </td>
     <td>
-      <center><%= link_to url.base_url + url.display_url, url %></center>
+      <p class='center'>
+        <span short_url='url.short_url'><%= link_to request.base_url + '/urls/' + url.short_url, url_path(url.short_url) %> </span>
+      </p>
     </td>
     <td>
       <center>
@@ -19,3 +21,7 @@
     </td>
   </tr>
 <% end %>
+
+
+
+

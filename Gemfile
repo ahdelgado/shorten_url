@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails',                   '4.2.2'
 gem 'pg'
 gem 'bcrypt',                  '3.1.7'
-gem 'puma'
 gem 'figaro'
 gem 'faker',                   '1.4.2'
 gem 'carrierwave',             '0.10.0'
@@ -35,4 +34,8 @@ group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
   gem 'guard-minitest',     '2.3.1'
+end
+
+group :production do
+  gem 'puma'
 end

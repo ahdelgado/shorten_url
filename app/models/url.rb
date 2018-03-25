@@ -17,17 +17,13 @@ class Url < ActiveRecord::Base
     self.short_url = Digest::SHA256.base64digest(long_url)
   end
 
-  def base_url
-    'http://ajruiz/'
-  end
-
   def clean
     self.url = self.long_url.strip.downcase.gsub(/(https?:\/\/)|(www\.)/, '')
     self.url = "http://#{self.url}"
   end
 
   def display_url
-    short_url.slice(0..6)
+    short_url.slice(0..5)
   end
             
 end

@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :get_url,         only: [:show, :destroy, :edit, :update]
+  before_action :get_url,         only: [:destroy, :edit, :update]
 
   def index
     @urls = Url.paginate(page: params[:page])
@@ -10,6 +10,7 @@ class UrlsController < ApplicationController
   end
 
   def show
+    @url = Url.find_by_short_url(params[:short_url])
     redirect_to @url.url
   end
   
@@ -41,8 +42,8 @@ class UrlsController < ApplicationController
       
   def destroy
     @url.destroy
-    flash[:success] = 'URL deleted'
-    redirect_to index_path
+    flash[:success] = 'Short URL deleted'
+    redirect_to urls_path
   end
   
   private

@@ -3,11 +3,11 @@
     <% if current_page?(root_path) || params[:action] == 'create'%>
       <nav>
         <ul>
-          <li><%= link_to "List of Shortened URLs", index_path, id: "logo" %></li>
+          <li><%= link_to "List of Shortened URLs", urls_path, id: "logo" %></li>
         </ul>
       </nav>
     <% end %>
-    <% if current_page?(urls_path) || current_page?(index_path) %>
+    <% if current_page?(urls_path) %>
       <nav>
         <ul>
           <li><%= link_to "Create New Short URL", root_path, id: "logo-right" %></li>

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  root             'urls#new'
-  get 'index'   => 'urls#index'
-  get 'show'    => 'urls#show'
-  resources        :urls
+  root 'urls#new'
+  resources  :urls, except: :show
+  get 'urls/:short_url', to: 'urls#show'   # allows short_url to be passed as a param
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
