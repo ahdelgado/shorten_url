@@ -1,7 +1,9 @@
 <% cache url do %>
   <tr>
     <td>
-      <center><%= link_to url.long_url, url %></center>
+      <p class='center'>
+        <%= link_to url.display_url, url %>
+      </p>
     </td>
     <td>
       <p class='center'>
