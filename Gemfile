@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails',                   '4.2.2'
-gem 'pg'
 gem 'bcrypt',                  '3.1.7'
 gem 'figaro'
 gem 'carrierwave',             '0.10.0'
@@ -20,6 +19,7 @@ gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'rails_serve_static_assets'
 gem 'rails_stdout_logging'
+gem 'pg', '0.21.0'
 gem 'rails_12factor'
 
 group :development, :test do

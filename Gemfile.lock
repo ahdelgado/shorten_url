@@ -258,7 +258,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    pg (1.0.0)
+    pg (0.21.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -387,7 +387,7 @@ DEPENDENCIES
   jbuilder (= 2.2.3)
   jquery-rails (= 4.0.3)
   mini_magick (= 3.8.0)
-  pg
+  pg (= 0.21.0)
   puma
   rails (= 4.2.2)
   rails-controller-testing
