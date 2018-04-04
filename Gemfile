@@ -27,8 +27,6 @@ group :development, :test do
   gem 'spring',      '1.1.3'
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem 'rspec-rails'
-  gem 'rspec'
   gem 'guard-rspec'
   gem 'rails-controller-testing'
   gem 'faker'
@@ -37,6 +35,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rspec-rails'
+  gem 'rspec'
   gem 'database_cleaner'
 end
 

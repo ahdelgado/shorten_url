@@ -28,6 +28,62 @@ RSpec.describe UrlsController, type: :controller do
     end
   end
 
+  describe 'GET #edit' do
+    before :each do
+      @url = build(:url)
+      @url.clean
+      @url.save
+    end
+    it 'has a 200 status code' do
+      get :edit, id: @url
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'POST #update' do
+    before :each do
+      @url = build(:url)
+      @url.clean
+      @url.save
+    end
+    context 'with valid attributes' do
+      it 'assigns the cleaned Url' do
+        patch :update, id: @url, url: { long_url: 'www.cnn.com' }
+        expect(assigns(:url).url).to eq 'https://cnn.com'
+      end
+      it 'updates the Url entry' do
+        patch :update, id: @url, url: { long_url: 'www.popular.com' }
+        expect(assigns(:url).long_url).to eq 'www.popular.com'
+      end
+      it 'redirects to the index page' do
+        patch :update, id: @url, url: { long_url: 'www.chase.com' }
+        expect(response).to redirect_to urls_path
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'does not update Url entry when Url is nil and renders the :edit template' do
+        patch :update, id: @url, url: { long_url: nil }
+        expect(response).to render_template :edit
+      end
+      it 'does not update a new Url entry when Url is empty string and renders the :edit template' do
+        patch :update, id: @url, url: { long_url: '       ' }
+        expect(response).to render_template :edit
+      end
+      it 'does not update a new Url entry when Url is invalid and renders the :edit template' do
+        patch :update, id: @url, url: { long_url: 'Invalid entry' }
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe 'GET #new' do
+    it 'has a 200 status code' do
+      get :new
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'POST #create' do
     context 'with valid attributes' do
       context 'with a new Url' do
