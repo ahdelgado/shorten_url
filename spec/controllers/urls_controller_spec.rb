@@ -40,7 +40,7 @@ RSpec.describe UrlsController, type: :controller do
     end
   end
 
-  describe 'POST #update' do
+  describe 'PATCH #update' do
     before :each do
       @url = build(:url)
       @url.clean
@@ -56,7 +56,7 @@ RSpec.describe UrlsController, type: :controller do
         expect(assigns(:url).long_url).to eq 'www.popular.com'
       end
       it 'redirects to the index page' do
-        patch :update, id: @url, url: { long_url: 'www.chase.com' }
+        patch :update, id: @url, url: { long_url: Faker::Internet.url }
         expect(response).to redirect_to urls_path
       end
     end

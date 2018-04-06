@@ -16,7 +16,7 @@ class UrlsController < ApplicationController
   
   def create
     @url = Url.new(url_params)
-    @url.clean  unless @url.long_url.nil? # always clean before saving
+    @url.clean  unless @url.long_url.nil? || @url.long_url.empty? # always clean before saving
     if @url.save
       flash[:success] = 'Short URL generated!'
       redirect_to urls_path
@@ -30,7 +30,7 @@ class UrlsController < ApplicationController
 
   def update
     @url.long_url = url_params[:long_url]
-    @url.clean  unless @url.long_url.nil? # always clean before saving
+    @url.clean  unless @url.long_url.nil? || @url.long_url.empty? # always clean before saving
     if !Url.where(url: @url.url).exists? && @url.save
       flash[:success] = 'New short URL generated!'
       redirect_to urls_path

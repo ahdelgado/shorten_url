@@ -1,11 +1,7 @@
 require 'digest'
 
 class Url < ActiveRecord::Base
-    
-  VALID_URL_REGEX = /\A((https?):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\z/ix
-                      
-  validates :url,  presence: true, uniqueness: true,
-                    format: { with: VALID_URL_REGEX }
+  validates :long_url,  presence: true, uniqueness: true, url: true
 
   before_save   :shorten_url
 

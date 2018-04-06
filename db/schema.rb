@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211042541) do
+ActiveRecord::Schema.define(version: 20180405062200) do
 
   create_table "urls", force: :cascade do |t|
     t.string   "long_url"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20180211042541) do
     t.string   "url"
   end
 
-  add_index "urls", ["long_url"], name: "index_urls_on_long_url", unique: true
   add_index "urls", ["short_url"], name: "index_urls_on_short_url", unique: true
 
 end

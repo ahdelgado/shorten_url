@@ -21,6 +21,7 @@ gem 'rails_serve_static_assets'
 gem 'rails_stdout_logging'
 gem 'pg', '0.21.0'
 gem 'rails_12factor'
+gem 'validate_url'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
