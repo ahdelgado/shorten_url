@@ -33,6 +33,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot_rails'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :test do

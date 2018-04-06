@@ -53,7 +53,7 @@ RSpec.describe UrlsController, type: :controller do
       end
       it 'updates the Url entry' do
         patch :update, id: @url, url: { long_url: 'www.popular.com' }
-        expect(assigns(:url).long_url).to eq 'www.popular.com'
+        expect(assigns(:url).long_url).to eq 'https://popular.com'
       end
       it 'redirects to the index page' do
         patch :update, id: @url, url: { long_url: Faker::Internet.url }
@@ -112,11 +112,11 @@ RSpec.describe UrlsController, type: :controller do
         end
         it 'does not create a new Url entry when clean method detects same Url' do
           expect{
-            post :create, url: { long_url: 'https//google.com'}
+            post :create, url: { long_url: 'https://google.com'}
           }.to_not change(Url, :count)
         end
         it 'renders the :new template' do
-          post :create, url: { long_url: 'https//google.com'}
+          post :create, url: { long_url: 'https://google.com'}
           expect(response).to render_template :new
         end
       end

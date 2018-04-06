@@ -3,7 +3,7 @@ require 'digest'
 class Url < ActiveRecord::Base
   validates :long_url,  presence: true, uniqueness: true, url: true
 
-  before_save   :shorten_url
+  before_save :shorten_url
 
   # Hash long URL into short URL
   def shorten_url
@@ -17,6 +17,7 @@ class Url < ActiveRecord::Base
   def clean
     self.url = self.long_url.strip.gsub(/(https?:\/\/)|(www\.)/, '')
     self.url = "https://#{self.url}"
+    self.long_url = url
   end
 
   def display_url
