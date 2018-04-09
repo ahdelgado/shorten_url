@@ -2,7 +2,7 @@ class UrlsController < ApplicationController
   before_action :get_url,         only: [:destroy, :edit, :update]
 
   def index
-    @urls = Url.paginate(page: params[:page])
+    @urls = Url.paginate(page: params[:page], per_page: 6)
   end
 
   def new

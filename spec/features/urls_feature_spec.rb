@@ -35,4 +35,13 @@ RSpec.feature 'Urls', type: :feature do
     click_link 'Create New Short URL'
     expect(current_path) == root_path
   end
+
+  scenario 'pagination is used after 7 Url instances' do
+    (0..6).each do create(:url) end
+    visit urls_path
+    expect(page).to have_css('div.pagination')
+    Url.last.destroy
+    visit urls_path
+    expect(page).to_not have_css('div.pagination')
+  end
 end
