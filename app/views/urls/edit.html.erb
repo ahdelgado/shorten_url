@@ -8,7 +8,7 @@
       <%= form_for(@url) do |f| %>
         <%= render 'shared/error_messages' %>
 
-        <%= f.text_field :long_url, class: 'form-control', placeholder: @url.url %>
+        <%= f.text_field :long_url, class: 'form-control', placeholder: @url.long_url %>
 
         <%= f.submit 'Generate a Short URL', class: 'btn btn-primary' %>
       <% end %>

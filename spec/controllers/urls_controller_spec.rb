@@ -21,7 +21,7 @@ RSpec.describe UrlsController, type: :controller do
       get :show, short_url: @url.short_url
     end
     it 'redirects to the cleaned Url' do
-      expect(response).to redirect_to(@url.url)
+      expect(response).to redirect_to(@url.long_url)
     end
     it 'has a 302 status code' do
       expect(response.status).to eq(302)
@@ -49,7 +49,7 @@ RSpec.describe UrlsController, type: :controller do
     context 'with valid attributes' do
       it 'assigns the cleaned Url' do
         patch :update, id: @url, url: { long_url: 'www.cnn.com' }
-        expect(assigns(:url).url).to eq 'https://cnn.com'
+        expect(assigns(:url).long_url).to eq 'https://cnn.com'
       end
       it 'updates the Url entry' do
         patch :update, id: @url, url: { long_url: 'www.popular.com' }
@@ -91,7 +91,7 @@ RSpec.describe UrlsController, type: :controller do
           post :create, url: { long_url: Faker::Internet.url}
         end
         it 'assigns the cleaned Url' do
-          expect(assigns(:url).url).to eq Url.last.url
+          expect(assigns(:url).long_url).to eq Url.last.long_url
         end
         it 'creates a new Url entry' do
           expect change(Url, :count).by(1)

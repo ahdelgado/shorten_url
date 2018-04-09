@@ -57,32 +57,32 @@ RSpec.describe Url, type: :model do
       it 'changes www.google.com to https://google.com' do
         url = build(:url, long_url: 'www.google.com')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
       it 'changes google.com to https://google.com' do
         url = build(:url, long_url: 'google.com')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
       it 'changes http://www.google.com to https://google.com' do
         url = build(:url, long_url: 'http://www.google.com')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
       it 'changes http://www.google.com to https://google.com' do
         url = build(:url, long_url: 'http://www.google.com')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
       it 'strips leading spaces from long_url' do
         url = build(:url, long_url: '  https://www.google.com')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
       it 'strips trailing spaces from long_url' do
         url = build(:url, long_url: 'https://www.google.com  ')
         url.clean
-        expect(url.url).to eq('https://google.com')
+        expect(url.long_url).to eq('https://google.com')
       end
     end
   end

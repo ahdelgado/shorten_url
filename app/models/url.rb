@@ -15,9 +15,7 @@ class Url < ActiveRecord::Base
   end
 
   def clean
-    self.url = self.long_url.strip.gsub(/(https?:\/\/)|(www\.)/, '')
-    self.url = "https://#{self.url}"
-    self.long_url = url
+    self.long_url = "https://#{self.long_url.strip.gsub(/(https?:\/\/)|(www\.)/, '')}"
   end
 
   def display_url
