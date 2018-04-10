@@ -142,5 +142,23 @@ RSpec.describe UrlsController, type: :controller do
         expect(response).to render_template :new
       end
     end
+
+    describe 'DELETE #destroy' do
+      before :each do
+        @url = build(:url)
+        @url.clean
+        @url.save
+      end
+      it 'decreases the Url count' do
+        expect{
+          delete :destroy, id: @url
+        }.to change(Url, :count).by(-1)
+      end
+      it 'deletes the Url' do
+        expect(Url.where(long_url: @url.long_url).exists?).to eq true
+        delete :destroy, id: @url
+        expect(Url.where(long_url: @url.long_url).exists?).to eq false
+      end
+    end
   end
 end

@@ -5,4 +5,4 @@ by [AJ Ruiz](https://www.linkedin.com/in/ruizaj/).
 
 The technology stack used is [Ruby on Rails](http://rubyonrails.org/).
 
-The website is hosted on Heroku at https://shortenurl.herokuapp.com
+The website is hosted on Heroku at https://shorenturl.herokuapp.com/

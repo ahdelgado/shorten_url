@@ -26,17 +26,30 @@ RSpec.describe Url, type: :model do
       @url2 = build(:url, long_url: sample_url)
       @url2.shorten_url
     end
-    it '#shorten_url always generates a short_url that is not in the database' do
-      expect(Url.find_by_short_url(@url2.short_url).nil?).to eq(true)
-    end
-    it 'if #shorten_url detects a collision it will increment short_url by one char' do
-      expect(@url2.short_url.length).to eq(@url1.short_url.length + 1)
-    end
-    it 'is invalid with a duplicate URL' do
-      @url2.valid?
-      expect(@url2.errors[:long_url]).to include('has already been taken')
+
+    context '#shorten_url' do
+      it '#shorten_url always generates a short_url that is not in the database' do
+        expect(Url.find_by_short_url(@url2.short_url).nil?).to eq(true)
+      end
+      it 'if #shorten_url detects a collision it will increment short_url by one char' do
+        expect(@url2.short_url.length).to eq(@url1.short_url.length + 1)
+      end
+      it 'is invalid with a duplicate URL' do
+        @url2.valid?
+        expect(@url2.errors[:long_url]).to include('has already been taken')
+      end
     end
 
+    context '#gsub_forward_slash' do
+      it 'gsubs any char / with char a ' do
+        @url2.short_url = '/////'
+        @url2.send(:gsub_forward_slash)
+        expect(@url2.short_url).to_not include('/')
+      end
+    end
+  end
+
+  describe 'method' do
     context '#display_url' do
       before :each do
         @url = build(:url, long_url: 'https//' + ('a' * 100) + '.com')
