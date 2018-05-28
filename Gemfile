@@ -22,6 +22,7 @@ gem 'rails_stdout_logging'
 gem 'pg', '0.21.0'
 gem 'rails_12factor'
 gem 'validate_url'
+gem 'hirb'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

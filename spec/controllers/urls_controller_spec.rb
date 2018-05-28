@@ -45,6 +45,7 @@ RSpec.describe UrlsController, type: :controller do
       @url = build(:url)
       @url.clean
       @url.save
+      session[:return_to] = 'http://test.host/urls?page=1'
     end
     context 'with valid attributes' do
       it 'assigns the cleaned Url' do
@@ -57,7 +58,7 @@ RSpec.describe UrlsController, type: :controller do
       end
       it 'redirects to the index page' do
         patch :update, id: @url, url: { long_url: Faker::Internet.url }
-        expect(response).to redirect_to urls_path
+        expect(response).to redirect_to urls_path(page: 1)
       end
     end
 
@@ -97,7 +98,7 @@ RSpec.describe UrlsController, type: :controller do
           expect change(Url, :count).by(1)
         end
         it 'redirects to the index page' do
-          expect(response).to redirect_to urls_path
+          expect(response).to redirect_to urls_path(page: 1)
         end
       end
 

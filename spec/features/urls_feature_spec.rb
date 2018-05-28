@@ -44,4 +44,22 @@ RSpec.feature 'Urls', type: :feature do
     visit urls_path
     expect(page).to_not have_css('div.pagination')
   end
+
+  scenario 'redirects to last page in order to display newly created URL' do
+    (0..6).each do create(:url) end
+    visit root_path
+    fill_in 'url_long_url', with: Faker::Internet.url
+    click_button 'Generate a Short URL'
+    expect(page).to have_current_path('/urls?page=2')
+  end
+
+  scenario 'edit action redirects back to previous page' do
+    (0..6).each do create(:url) end
+    visit urls_path(page: 2)
+    click_link 'Edit'
+    url3 = Faker::Internet.url
+    fill_in 'url_long_url', with: url3
+    click_button 'Generate a Short URL'
+    expect(page).to have_current_path('/urls?page=2')
+  end
 end

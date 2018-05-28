@@ -1,8 +1,10 @@
 class UrlsController < ApplicationController
   before_action :get_url,         only: [:destroy, :edit, :update]
+  before_action :get_urls,        only: [:create, :index]
+
+  RECORDS_PER_PAGE = 6
 
   def index
-    @urls = Url.paginate(page: params[:page], per_page: 6)
   end
 
   def new
@@ -19,13 +21,14 @@ class UrlsController < ApplicationController
     @url.clean  unless @url.long_url.nil? || @url.long_url.empty? # always clean before saving
     if @url.save
       flash[:success] = 'Short URL generated!'
-      redirect_to urls_path
+      redirect_to urls_path(page: @urls.total_pages)
     else
       render 'new'
     end
   end
 
   def edit
+    session[:return_to] ||= request.referer
   end
 
   def update
@@ -33,7 +36,7 @@ class UrlsController < ApplicationController
     @url.clean  unless @url.long_url.nil? || @url.long_url.empty? # always clean before saving
     if !Url.where(long_url: @url.long_url).exists? && @url.save
       flash[:success] = 'New short URL generated!'
-      redirect_to urls_path
+      redirect_to session.delete(:return_to)
     else
       flash[:warning] = 'URL already exists in database.'
       render 'edit'
@@ -54,5 +57,9 @@ class UrlsController < ApplicationController
 
     def get_url
       @url = Url.find(params[:id])
+    end
+
+    def get_urls
+      @urls = Url.page(params[:page]).per_page(RECORDS_PER_PAGE)
     end
 end

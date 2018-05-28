@@ -235,4 +235,8 @@ a.delete {
 .pagination {
   padding-left: 10px;
   margin: 6px 0;
+
+  .disabled {
+    display: none;
+  }
 }
