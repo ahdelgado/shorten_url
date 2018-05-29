@@ -95,7 +95,7 @@ RSpec.describe UrlsController, type: :controller do
           expect(assigns(:url).long_url).to eq Url.last.long_url
         end
         it 'creates a new Url entry' do
-          expect change(Url, :count).by(1)
+          expect change(Url, :size).by(1)
         end
         it 'redirects to the index page' do
           expect(response).to redirect_to urls_path(page: 1)

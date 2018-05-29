@@ -7,7 +7,7 @@ class Url < ActiveRecord::Base
 
   # Hash long URL into short URL
   def shorten_url
-    (5..Digest::SHA256.base64digest(long_url).length).each do |i|
+    (5..Digest::SHA256.base64digest(long_url).size).each do |i|
       self.short_url = Digest::SHA256.base64digest(long_url).slice(0..i)
       gsub_forward_slash
       break if Url.find_by_short_url(self.short_url).nil?
@@ -19,7 +19,7 @@ class Url < ActiveRecord::Base
   end
 
   def display_url
-    if self.long_url.length > 80
+    if self.long_url.size > 80
       self.long_url.slice(0..79).gsub!(/$/, '...')
     else
       self.long_url

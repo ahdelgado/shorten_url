@@ -32,7 +32,7 @@ RSpec.describe Url, type: :model do
         expect(Url.find_by_short_url(@url2.short_url).nil?).to eq(true)
       end
       it 'if #shorten_url detects a collision it will increment short_url by one char' do
-        expect(@url2.short_url.length).to eq(@url1.short_url.length + 1)
+        expect(@url2.short_url.size).to eq(@url1.short_url.size + 1)
       end
       it 'is invalid with a duplicate URL' do
         @url2.valid?
@@ -55,7 +55,7 @@ RSpec.describe Url, type: :model do
         @url = build(:url, long_url: 'https//' + ('a' * 100) + '.com')
       end
       it 'shortens URL with length > 80 to length 83' do
-        expect(@url.display_url.length).to eq 83
+        expect(@url.display_url.size).to eq 83
       end
       it 'appends ... to end of URL if length is > 80' do
         expect(@url.display_url).to include('...')
