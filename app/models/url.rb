@@ -5,6 +5,9 @@ class Url < ActiveRecord::Base
 
   before_save :shorten_url
 
+  default_scope { order :long_url }
+  scope :long_url_starting_with, -> (starting_string) { where("long_url LIKE ?", "#{starting_string}%") }
+
   # Hash long URL into short URL
   def shorten_url
     (5..Digest::SHA256.base64digest(long_url).size).each do |i|
@@ -31,3 +34,5 @@ class Url < ActiveRecord::Base
       self.short_url.gsub!(/\//, 'a') if self.short_url.include?('/')
     end
 end
+
+

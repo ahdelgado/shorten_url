@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails',                   '4.2.2'
+gem 'rails',                   '4.2.7'
 gem 'bcrypt',                  '3.1.7'
 gem 'figaro'
 gem 'carrierwave',             '0.10.0'
@@ -23,6 +23,7 @@ gem 'pg', '0.21.0'
 gem 'rails_12factor'
 gem 'validate_url'
 gem 'hirb'
+gem 'puma'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -41,8 +42,4 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec'
   gem 'database_cleaner'
-end
-
-group :production do
-  gem 'puma'
 end
