@@ -149,15 +149,16 @@ RSpec.describe UrlsController, type: :controller do
         @url = build(:url)
         @url.clean
         @url.save
+        allow(controller.request).to receive(:referer).and_return(root_url + 'urls?page=2')
       end
-      it 'decreases the Url count' do
+      it 'AJAX delete request decreases the Url count' do
         expect{
-          delete :destroy, id: @url
+          xhr :delete, :destroy, id: @url
         }.to change(Url, :count).by(-1)
       end
-      it 'deletes the Url' do
+      it 'AJAX deletes the Url' do
         expect(Url.where(long_url: @url.long_url).exists?).to eq true
-        delete :destroy, id: @url
+        xhr :delete, :destroy, id: @url
         expect(Url.where(long_url: @url.long_url).exists?).to eq false
       end
     end

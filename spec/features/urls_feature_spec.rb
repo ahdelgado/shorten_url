@@ -36,8 +36,8 @@ RSpec.feature 'Urls', type: :feature do
     expect(current_path) == root_path
   end
 
-  scenario 'pagination is used after 7 Url instances' do
-    (0..6).each do create(:url) end
+  scenario 'pagination is used urls.count > 5 Url instances' do
+    (0..5).each do create(:url) end
     visit urls_path
     expect(page).to have_css('div.pagination')
     Url.last.destroy
@@ -54,7 +54,7 @@ RSpec.feature 'Urls', type: :feature do
   end
 
   scenario 'edit action redirects back to previous page' do
-    (0..6).each do create(:url) end
+    (0..5).each do create(:url) end
     visit urls_path(page: 2)
     click_link 'Edit'
     url3 = Faker::Internet.url

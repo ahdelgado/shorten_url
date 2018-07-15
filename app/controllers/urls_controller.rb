@@ -2,7 +2,7 @@ class UrlsController < ApplicationController
   before_action :get_url,         only: [:destroy, :edit, :update]
   before_action :get_urls,        only: [:create, :index]
 
-  RECORDS_PER_PAGE = 6
+  RECORDS_PER_PAGE = 5
 
   def index
   end
@@ -46,7 +46,7 @@ class UrlsController < ApplicationController
   def destroy
     @url.destroy
     flash[:success] = 'Short URL deleted'
-    redirect_to urls_path
+    redirect_to request.referer
   end
   
   private

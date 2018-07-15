@@ -1,14 +1,14 @@
 <header>
-  <div class="container">
+  <div class='container'>
     <% if current_page?(root_path) || params[:action] == 'create'%>
-      <nav>
+      <nav class='whitetext'>
         <ul>
           <li><%= link_to "List of Shortened URLs", urls_path, id: "logo" %></li>
         </ul>
       </nav>
     <% end %>
     <% if current_page?(urls_path) %>
-      <nav>
+      <nav class='whitetext'>
         <ul>
           <li><%= link_to "Create New Short URL", root_path, id: "logo-right" %></li>
         </ul>
